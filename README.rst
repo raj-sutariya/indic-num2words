@@ -3,8 +3,6 @@ indic-num2words - Convert numbers to words for indian languages
 
 ``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
 
-Contributions are welcome.
-
 The module currently supports the following languages:
 
 * ``hi`` (Hindi)
