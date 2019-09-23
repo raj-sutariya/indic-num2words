@@ -37,10 +37,11 @@ In code there's only one function to use
 
 What's next
 -----------
-``Shout out if you want to help :)``
 
 Add Support for following Languages
 
 * Malayalam
 * Urdu
 * Assamese
+
+``Shout out if you want to help :)``
