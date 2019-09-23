@@ -15,11 +15,12 @@ from indic_numbers import all_num
 from indic_numbers import num_dict
 
 
-def num_to_word(num, lang):
+def num_to_word(num, lang, separator=' '):
     """
     Main Method
     :param num: Number digits from any indian language
     :param lang: Language Code from supported Language
+    :param separator: Separator character
     :return: UTF-8 String of numbers spoken in words
     """
     lang = lang.lower()
@@ -47,9 +48,9 @@ def num_to_word(num, lang):
         if len(digits_2) <= 1:                          # Provided only one/zero digit
             return num_dic.get(digits_2, '')
         elif digits_2 == '00':                          # Two Zero provided
-            return num_dic['0'] + ' ' + num_dic['0']
+            return num_dic['0'] + separator + num_dic['0']
         elif digits_2[0] == '0':                        # First digit is zero
-            return num_dic['0'] + ' ' + num_dic[digits_2[1]]
+            return num_dic['0'] + separator + num_dic[digits_2[1]]
         else:                                           # Both digit provided
             return num_dic[digits_2]
 
@@ -64,19 +65,19 @@ def num_to_word(num, lang):
     def all_digit(digits):
         digits = digits.lstrip('0')
         if len(digits) == 9:
-            return num_dic[digits[:2]] + num_dic['10000000'] + ' ' + all_digit(digits[2:])
+            return num_dic[digits[:2]] + num_dic['10000000'] + separator + all_digit(digits[2:])
         elif len(digits) == 8:
-            return num_dic[digits[:1]] + num_dic['10000000'] + ' ' + all_digit(digits[1:])
+            return num_dic[digits[:1]] + num_dic['10000000'] + separator + all_digit(digits[1:])
         elif len(digits) == 7:
-            return num_dic[digits[:2]] + num_dic['100000'] + ' ' + all_digit(digits[2:])
+            return num_dic[digits[:2]] + num_dic['100000'] + separator + all_digit(digits[2:])
         elif len(digits) == 6:
-            return num_dic[digits[:1]] + num_dic['100000'] + ' ' + all_digit(digits[1:])
+            return num_dic[digits[:1]] + num_dic['100000'] + separator + all_digit(digits[1:])
         elif len(digits) == 5:
-            return num_dic[digits[:2]] + num_dic['1000'] + ' ' + all_digit(digits[2:])
+            return num_dic[digits[:2]] + num_dic['1000'] + separator + all_digit(digits[2:])
         elif len(digits) == 4:
-            return num_dic[digits[:1]] + num_dic['1000'] + ' ' + all_digit(digits[1:])
+            return num_dic[digits[:1]] + num_dic['1000'] + separator + all_digit(digits[1:])
         elif len(digits) == 3:
-            return num_dic[digits[:1]] + num_dic['100'] + ' ' + two_digit(digits[1:])
+            return num_dic[digits[:1]] + num_dic['100'] + separator + two_digit(digits[1:])
         else:
             return two_digit(digits)
 
@@ -91,8 +92,10 @@ def num_to_word(num, lang):
         iteration = round(digit_len/2)
         output = all_two_digit(num[:2])  # First to digit
         for i in range(1, iteration):
-            output = output + ' ' + all_two_digit(num[i*2:(i+1)*2])  # Next two digit pair
-        output = output + ' ' + all_two_digit(num[iteration*2:])  # Last one_digit/two_digits
+            output = output + separator + all_two_digit(num[i * 2:(i + 1) * 2])  # Next two digit pair
+        remaining_digits = num[iteration * 2:]
+        if not all_two_digit(remaining_digits) == '':
+            output = output + separator + all_two_digit(remaining_digits)  # Last one_digit/two_digits
 
     output = output.strip()
 
