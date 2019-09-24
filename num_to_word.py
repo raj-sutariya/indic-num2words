@@ -15,13 +15,58 @@ from indic_numbers import all_num
 from indic_numbers import num_dict
 
 
-def num_to_word(num, lang, separator=' '):
+def language_specific_exception(words, lang, combiner):
+    """
+    Language Specific Exception will come here
+    """
+
+    if lang == 'gu':
+        words = words.replace('બેસો', 'બસ્સો')
+    # if lang == 'hi':
+        # words = words.replace('छःसौ', 'छसौ')
+    if lang == 'te':
+        exception_dict = {
+            "100": "వంద",
+            "100+": "వందలు",
+            "1000": "వెయ్యి",
+            "1000+": "వేలు",
+            "100000": "లక్ష",
+            "100000+": "లక్షలు",
+            "10000000": "కోటి",
+            "10000000+": "కోట్లు",
+        }
+
+        def occurs_at_end(piece):
+            return words[-len(piece):] == piece
+
+        test_case = ['100', '1000', '100000', '10000000']
+        for test in test_case:
+            test_word = num_dict['te'][test]
+            match = num_dict['te']['1'] + combiner + test_word
+            if words == match:
+                return exception_dict[test]
+            elif occurs_at_end(test_word):
+                return words.replace(test_word, exception_dict[test+'+'])
+
+        # Exception case with 101, 1002, ...., 10000009
+        special_case = [("ఒకటి" + combiner + "వందల", "నూట"),
+                        ("ఒకటి" + combiner + "వేల", "ఒక" + combiner + "వెయ్యి"),
+                        ("ఒకటి" + combiner + "లక్షల", "ఒక" + combiner + "లక్ష"),
+                        ("ఒకటి" + combiner + "కోట్ల", "ఒక" + combiner + "కోటి")]
+        for case, replacement in special_case:
+            if not occurs_at_end(case):
+                words = words.replace(case, replacement)
+    return words
+
+
+def num_to_word(num, lang, separator=', ', combiner=' '):
     """
     Main Method
     :param num: Number digits from any indian language
     :param lang: Language Code from supported Language
-    :param separator: Separator character
-    :return: UTF-8 String of numbers spoken in words
+    :param separator: Separator character i.e. separator = '-' --> 'two hundred-sixty'
+    :param combiner: combine number with position i.e. combiner = '-' --> 'two-hundred sixty'
+    :return: UTF-8 String of numbers in words
     """
     lang = lang.lower()
     num = str(num)
@@ -30,8 +75,12 @@ def num_to_word(num, lang, separator=' '):
     assert lang in supported_lang, 'Language not supported'
     num_dic = num_dict[lang]
 
+    # dash default combiner for english-india
+    if lang == 'en':
+        combiner = '-'
+
     # Remove punctuations from numbers
-    num = str(num).replace(',', '')
+    num = str(num).replace(',', '').replace(' ', '')
 
     # Replace native language numbers with english digits
     for language in supported_lang:
@@ -64,32 +113,33 @@ def num_to_word(num, lang, separator=' '):
 
     def all_digit(digits):
         digits = digits.lstrip('0')
-        if len(digits) == 9:
-            return num_dic[digits[:2]] + num_dic['10000000'] + separator + all_digit(digits[2:])
-        elif len(digits) == 8:
-            return num_dic[digits[:1]] + num_dic['10000000'] + separator + all_digit(digits[1:])
-        elif len(digits) == 7:
-            return num_dic[digits[:2]] + num_dic['100000'] + separator + all_digit(digits[2:])
-        elif len(digits) == 6:
-            return num_dic[digits[:1]] + num_dic['100000'] + separator + all_digit(digits[1:])
-        elif len(digits) == 5:
-            return num_dic[digits[:2]] + num_dic['1000'] + separator + all_digit(digits[2:])
+        digit_len = len(digits)
+        if digit_len == 9:
+            return num_dic[digits[:2]] + combiner + num_dic['10000000'] + separator + all_digit(digits[2:])
+        elif digit_len == 8:
+            return num_dic[digits[:1]] + combiner + num_dic['10000000'] + separator + all_digit(digits[1:])
+        elif digit_len == 7:
+            return num_dic[digits[:2]] + combiner + num_dic['100000'] + separator + all_digit(digits[2:])
+        elif digit_len == 6:
+            return num_dic[digits[:1]] + combiner + num_dic['100000'] + separator + all_digit(digits[1:])
+        elif digit_len == 5:
+            return num_dic[digits[:2]] + combiner + num_dic['1000'] + separator + all_digit(digits[2:])
         elif len(digits) == 4:
-            return num_dic[digits[:1]] + num_dic['1000'] + separator + all_digit(digits[1:])
+            return num_dic[digits[:1]] + combiner + num_dic['1000'] + separator + all_digit(digits[1:])
         elif len(digits) == 3:
-            return num_dic[digits[:1]] + num_dic['100'] + separator + two_digit(digits[1:])
+            return num_dic[digits[:1]] + combiner + num_dic['100'] + separator + two_digit(digits[1:])
         else:
             return two_digit(digits)
 
     num = num.lstrip('0')
-    digit_len = len(num)
+    full_digit_len = len(num)
 
-    if digit_len == 0:
+    if full_digit_len == 0:
         output = num_dic['0']
-    elif digit_len <= 9:
+    elif full_digit_len <= 9:
         output = all_digit(num)
     else:
-        iteration = round(digit_len/2)
+        iteration = round(full_digit_len/2)
         output = all_two_digit(num[:2])  # First to digit
         for i in range(1, iteration):
             output = output + separator + all_two_digit(num[i * 2:(i + 1) * 2])  # Next two digit pair
@@ -97,10 +147,8 @@ def num_to_word(num, lang, separator=' '):
         if not all_two_digit(remaining_digits) == '':
             output = output + separator + all_two_digit(remaining_digits)  # Last one_digit/two_digits
 
-    output = output.strip()
+    output = output.strip(separator)
 
-    # Language Specific Exception will come here
-    output = output.replace('બેસો', 'બસ્સો')
-    output = output.replace('छःसौ', 'छसौ')
+    output = language_specific_exception(output, lang, combiner)
 
     return output
