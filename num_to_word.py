@@ -19,12 +19,11 @@ def language_specific_exception(words, lang, combiner):
     """
     Language Specific Exception will come here
     """
-
-    if lang == 'gu':
-        words = words.replace('બેસો', 'બસ્સો')
-    # if lang == 'hi':
-        # words = words.replace('छःसौ', 'छसौ')
-    if lang == 'te':
+    if lang == 'mr':
+        words = words.replace("एक" + combiner + "शे", "शंभर")
+    elif lang == 'gu':
+        words = words.replace('બે' + combiner + 'સો', 'બસ્સો')
+    elif lang == 'te':
         exception_dict = {
             "1": "ఒక",
             "100": "వంద",
@@ -49,7 +48,7 @@ def language_specific_exception(words, lang, combiner):
                 return exception_dict[test]
             # for numbers like : 200, 4000, 800000
             elif occurs_at_end(test_word):
-                words = words.replace(test_word, exception_dict[test+'+'])
+                words = words.replace(test_word, exception_dict[test + '+'])
             # for numbers like : 105, 1076, 123993
             elif not occurs_at_end(match):
                 replacement = exception_dict['1'] + combiner + exception_dict[test]
@@ -96,13 +95,13 @@ def num_to_word(num, lang, separator=', ', combiner=' '):
     # Process
     # For Number longer than 9 digits
     def all_two_digit(digits_2):
-        if len(digits_2) <= 1:                          # Provided only one/zero digit
+        if len(digits_2) <= 1:  # Provided only one/zero digit
             return num_dic.get(digits_2, '')
-        elif digits_2 == '00':                          # Two Zero provided
+        elif digits_2 == '00':  # Two Zero provided
             return num_dic['0'] + separator + num_dic['0']
-        elif digits_2[0] == '0':                        # First digit is zero
+        elif digits_2[0] == '0':  # First digit is zero
             return num_dic['0'] + separator + num_dic[digits_2[1]]
-        else:                                           # Both digit provided
+        else:  # Both digit provided
             return num_dic[digits_2]
 
     # For Number less than 9 digits
@@ -116,18 +115,12 @@ def num_to_word(num, lang, separator=', ', combiner=' '):
     def all_digit(digits):
         digits = digits.lstrip('0')
         digit_len = len(digits)
-        if digit_len == 9:
-            return num_dic[digits[:2]] + combiner + num_dic['10000000'] + separator + all_digit(digits[2:])
-        elif digit_len == 8:
-            return num_dic[digits[:1]] + combiner + num_dic['10000000'] + separator + all_digit(digits[1:])
-        elif digit_len == 7:
-            return num_dic[digits[:2]] + combiner + num_dic['100000'] + separator + all_digit(digits[2:])
-        elif digit_len == 6:
-            return num_dic[digits[:1]] + combiner + num_dic['100000'] + separator + all_digit(digits[1:])
-        elif digit_len == 5:
-            return num_dic[digits[:2]] + combiner + num_dic['1000'] + separator + all_digit(digits[2:])
-        elif len(digits) == 4:
-            return num_dic[digits[:1]] + combiner + num_dic['1000'] + separator + all_digit(digits[1:])
+        if digit_len > 3:
+            num_of_digits_to_process = (digit_len % 2) + 1
+            process_digits = digits[:num_of_digits_to_process]
+            base = str(10**(int(digit_len / 2) * 2 - 1))
+            remain_digits = digits[num_of_digits_to_process:]
+            return num_dic[process_digits] + combiner + num_dic[base] + separator + all_digit(remain_digits)
         elif len(digits) == 3:
             return num_dic[digits[:1]] + combiner + num_dic['100'] + separator + two_digit(digits[1:])
         else:
@@ -141,13 +134,13 @@ def num_to_word(num, lang, separator=', ', combiner=' '):
     elif full_digit_len <= 9:
         output = all_digit(num)
     else:
-        iteration = round(full_digit_len/2)
+        iteration = round(full_digit_len / 2)
         output = all_two_digit(num[:2])  # First to digit
         for i in range(1, iteration):
-            output = output + separator + all_two_digit(num[i * 2:(i + 1) * 2])  # Next two digit pair
+            output = output + separator + all_two_digit(num[i * 2:(i + 1) * 2])  # Next two digit pairs
         remaining_digits = num[iteration * 2:]
         if not all_two_digit(remaining_digits) == '':
-            output = output + separator + all_two_digit(remaining_digits)  # Last one_digit/two_digits
+            output = output + separator + all_two_digit(remaining_digits)  # remaining Last one/two digits
 
     output = output.strip(separator)
 
