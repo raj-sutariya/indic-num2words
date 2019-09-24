@@ -27,11 +27,11 @@ In code there's only one function to use
     >>> from num_to_word import num_to_word
     >>> num_to_word(36, lang='hi')
     छत्तीस
-    >>> num2words('४५', lang='hi')
+    >>> num_to_word('४५', lang='hi')
     पैंतालीस
-    >>> num2words("35,43,57,730", lang='hi')
+    >>> num_to_word("35,43,57,730", lang='hi')
     पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
-    >>> num2words(795, lang='kn', separator='-')
+    >>> num_to_word(795, lang='kn', separator='-')
     ಏಳುನೂರು-ತೊಂಬತ್ತೈದು
 
 
