@@ -5,6 +5,7 @@ indic-num2words - Convert numbers to words for indian languages
 
 The module currently supports the following languages:
 
+* ``en`` (English-India)
 * ``hi`` (Hindi)
 * ``gu`` (Gujarati)
 * ``mr`` (Marathi)
@@ -33,6 +34,9 @@ In code there's only one function to use
     पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
     >>> num_to_word(795, lang='kn', separator='-')
     ಏಳುನೂರು-ತೊಂಬತ್ತೈದು
+    >>> num_to_word(545589, lang='en', separator=', ', combiner='-')
+    five-lakh, forty-five-thousand, five-hundred, eighty-nine
+
 
 
 What's next
