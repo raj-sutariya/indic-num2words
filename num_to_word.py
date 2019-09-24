@@ -26,6 +26,7 @@ def language_specific_exception(words, lang, combiner):
         # words = words.replace('छःसौ', 'छसौ')
     if lang == 'te':
         exception_dict = {
+            "1": "ఒక",
             "100": "వంద",
             "100+": "వందలు",
             "1000": "వెయ్యి",
@@ -43,19 +44,20 @@ def language_specific_exception(words, lang, combiner):
         for test in test_case:
             test_word = num_dict['te'][test]
             match = num_dict['te']['1'] + combiner + test_word
+            # for numbers like : 100, 1000, 100000
             if words == match:
                 return exception_dict[test]
+            # for numbers like : 200, 4000, 800000
             elif occurs_at_end(test_word):
-                return words.replace(test_word, exception_dict[test+'+'])
+                words = words.replace(test_word, exception_dict[test+'+'])
+            # for numbers like : 105, 1076, 123993
+            elif not occurs_at_end(match):
+                replacement = exception_dict['1'] + combiner + exception_dict[test]
+                words = words.replace(match, replacement)
 
-        # Exception case with 101, 1002, ...., 10000009
-        special_case = [("ఒకటి" + combiner + "వందల", "నూట"),
-                        ("ఒకటి" + combiner + "వేల", "ఒక" + combiner + "వెయ్యి"),
-                        ("ఒకటి" + combiner + "లక్షల", "ఒక" + combiner + "లక్ష"),
-                        ("ఒకటి" + combiner + "కోట్ల", "ఒక" + combiner + "కోటి")]
-        for case, replacement in special_case:
-            if not occurs_at_end(case):
-                words = words.replace(case, replacement)
+        # Exception case for 101...199
+        special_case = "ఒక" + combiner + "వంద"
+        words = words.replace(special_case, "నూట")
     return words
 
 
