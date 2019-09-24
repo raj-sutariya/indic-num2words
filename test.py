@@ -6,7 +6,8 @@ from num_to_word import num_to_word, supported_lang
 # number = '0'
 # while number != '':
 #     number = input("Enter Num: ")
-#     print(num_to_word(number, lang='gu'))
+#     print(num_to_word(number, lang='te', combiner=' '))
+
 
 # test module with random integer
 data_list = []
@@ -18,7 +19,7 @@ for _ in range(5):
         i = random.randint(current_range, current_range*10)
         one_data = [i]
         for lang in supported_lang:
-            one_data.append(num_to_word(i, lang=lang, separator='-'))
+            one_data.append(num_to_word(i, lang=lang, separator=', ', combiner='-'))
             header.append(lang)
         data_list.append(one_data)
 
