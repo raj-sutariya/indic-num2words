@@ -19,6 +19,9 @@ def language_specific_exception(words, lang, combiner):
     """
     Language Specific Exception will come here
     """
+    def occurs_at_end(piece):
+        return words[-len(piece):] == piece
+
     if lang == 'mr':
         words = words.replace("एक" + combiner + "शे", "शंभर")
     elif lang == 'gu':
@@ -35,9 +38,6 @@ def language_specific_exception(words, lang, combiner):
             "10000000": "కోటి",
             "10000000+": "కోట్లు",
         }
-
-        def occurs_at_end(piece):
-            return words[-len(piece):] == piece
 
         test_case = ['100', '1000', '100000', '10000000']
         for test in test_case:
@@ -57,6 +57,19 @@ def language_specific_exception(words, lang, combiner):
         # Exception case for 101...199
         special_case = "ఒక" + combiner + "వంద"
         words = words.replace(special_case, "నూట")
+    elif lang == 'kn':
+        # special case for 100
+        if words == ('ಒಂದು' + combiner + 'ನೂರ'):
+            return 'ನೂರು'
+        exception_dict = {
+            'ನೂರ': 'ನೂರು',
+            'ಸಾವಿರದ': 'ಸಾವಿರ',
+            'ಲಕ್ಷದ': 'ಲಕ್ಷ',
+            'ಕೋಟಿಯ': 'ಕೋಟಿ'
+        }
+        for expt in exception_dict:
+            if occurs_at_end(expt):
+                words = words.replace(expt, exception_dict[expt])
     return words
 
 
