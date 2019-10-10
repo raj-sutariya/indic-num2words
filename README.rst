@@ -33,7 +33,7 @@ In code there's only one function to use
     >>> num_to_word("35,43,57,730", lang='hi')
     पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
     >>> num_to_word(795, lang='kn', separator='-')
-    ಏಳುನೂರು-ತೊಂಬತ್ತೈದು
+    ಏಳುನೂರ-ತೊಂಬತ್ತೈದು
     >>> num_to_word(545589, lang='en', separator=', ', combiner='-')
     five-lakh, forty-five-thousand, five-hundred, eighty-nine
 
