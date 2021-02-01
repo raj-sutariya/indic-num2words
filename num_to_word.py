@@ -90,7 +90,7 @@ def num_to_word(num, lang, separator=', ', combiner=' '):
     num_dic = num_dict[lang]
 
     # dash default combiner for english-india
-    if lang == 'en':
+    if (lang == 'en') & (combiner == ' '):
         combiner = '-'
 
     # Remove punctuations from numbers
