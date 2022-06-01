@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytz
 
-__version__ = "2.0.0"
+__version__ = "1.0.0"
 
 # Add datetime.now() for test PyPI to skip conflicts in file name
 test_version = os.environ.get("TESTPYPI", default=False)
