@@ -33,7 +33,7 @@ setup(
     url="https://github.com/ramanaditya/indic-num2words/",
     packages=find_packages(),
     zip_safe=False,
-    install_requires=["pytz"],
+    install_requires=[],
     classifiers=[
         "Development Status :: 1 - Beta",
         "Intended Audience :: Developers",
