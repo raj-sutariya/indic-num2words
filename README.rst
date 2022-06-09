@@ -1,15 +1,16 @@
 indic-num2words - Convert numbers to words for indian languages
 ===============================================================
 
-The repository has been forked from github.com/sutariyaraj/indic-num2words. And the code has been converted into
-PyPI module for the easy installation and update.
+The code has been converted into PyPI module for the easy installation and update.
 
 Use Cases:-
 ------------
 1. Speech recognition pre-processing
 2. Language modeling Data pre-processing
 
----------------
+
+Usage :-
+------------
 check utils/constants.py to add support
 for any indian language
 
