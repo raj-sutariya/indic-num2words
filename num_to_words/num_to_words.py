@@ -72,6 +72,9 @@ def num_to_word(num, lang, separator=", ", combiner=" "):
     lang = lang.lower()
     num = str(num)
 
+    if num.strip() == '':
+        return num.strip()
+
     # Load dictionary according to language code
     assert lang in SUPPORTED_LANGUAGES, "Language not supported"
     num_dic = NUM_DICT[lang]
