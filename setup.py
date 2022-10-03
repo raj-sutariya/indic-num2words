@@ -17,20 +17,19 @@ with open(PACKAGE_DIR / "version.py", encoding="utf-8") as version_file:
     exec(code_obj, __version__)
     version = __version__["__version__"]
 
-with open("README.rst", "r") as readme_file:
+with open("README.rst", "r", encoding="utf8") as readme_file:
     long_description = readme_file.read()
 
 setup(
     name="indic-num2words",
     version=version,
     license="Apache License",
-    author="Aditya Raman",
-    author_email="adityaraman96@gmail.com",
-    description="Package to convert numbers to words with support of multiple indian languages."
-                "(Extension of repo https://github.com/sutariyaraj/indic-num2words)",
+    author="Indic-Num2Words Contributors",
+    author_email="sutariyaraj77725@gmail.com",
+    description="Package to convert numbers to words with support of multiple indian languages.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url="https://github.com/ramanaditya/indic-num2words/",
+    url="https://github.com/sutariyaraj/gujarati_speech_recognition",
     packages=find_packages(),
     zip_safe=False,
     install_requires=[],
@@ -51,8 +50,8 @@ setup(
     ),
     project_urls=OrderedDict(
         [
-            ("Source", "https://github.com/ramanaditya/indic-num2words/"),
-            ("Tracker", "https://github.com/ramanaditya/indic-num2words/issues"),
+            ("Source", "https://github.com/sutariyaraj/indic-num2words/"),
+            ("Tracker", "https://github.com/sutariyaraj/indic-num2words/issues"),
         ]
     ),
 )
