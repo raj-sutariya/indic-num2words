@@ -39,7 +39,7 @@ In code there's only one function to use
 
 .. code:: python
 
-    >>> from num_to_word import num_to_word
+    >>> from num_to_words import num_to_word
     >>> num_to_word(36, lang='hi')
     छत्तीस
     >>> num_to_word('४५', lang='hi')
