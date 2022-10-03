@@ -29,7 +29,7 @@ setup(
     description="Package to convert numbers to words with support of multiple indian languages.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url="https://github.com/sutariyaraj/gujarati_speech_recognition",
+    url="https://github.com/sutariyaraj/indic-num2words/",
     packages=find_packages(),
     zip_safe=False,
     install_requires=[],
