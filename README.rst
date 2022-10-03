@@ -11,9 +11,6 @@ Use Cases:-
 
 Usage :-
 ------------
-check utils/constants.py to add support
-for any indian language
-
 
 ``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
 
@@ -32,8 +29,6 @@ The module currently supports the following languages:
 
 Usage
 -----
-
-Just import num_to_word.py to your code
 
 In code there's only one function to use
 
@@ -61,5 +56,7 @@ Add Support for following Languages
 * Malayalam
 * Urdu
 * Assamese
+
+check utils/constants.py to add support for any indian languages.
 
 ``Shout out if you want to help :)``

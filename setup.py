@@ -34,11 +34,11 @@ setup(
     zip_safe=False,
     install_requires=[],
     classifiers=[
-        "Development Status :: 1 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Intended Audience :: Customer Service",
         "Natural Language :: English",
-        "License :: OSI Approved :: Apache License",
+        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.9",
         "Topic :: Communications",
         "Topic :: Software Development :: Libraries :: Python Modules",
