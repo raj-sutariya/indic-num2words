@@ -6,7 +6,16 @@ The code has been converted into PyPI module for the easy installation and updat
 Use Cases:-
 ------------
 1. Speech recognition pre-processing
-2. Language modeling Data pre-processing
+2. Language modeling data pre-processing
+
+
+Installation :-
+------------
+To install latest PyPI stable release
+
+.. code::
+
+    pip install indic-num2words
 
 
 Usage :-
