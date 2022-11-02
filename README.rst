@@ -3,6 +3,8 @@ indic-num2words - Convert numbers to words for indian languages
 
 The code has been converted into PyPI module for the easy installation and update.
 
+``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
+
 Use Cases:-
 ------------
 1. Speech recognition pre-processing
@@ -21,24 +23,6 @@ To install latest PyPI stable release
 Usage :-
 ------------
 
-``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
-
-The module currently supports the following languages:
-
-* ``en`` (English-India)
-* ``hi`` (Hindi)
-* ``gu`` (Gujarati)
-* ``mr`` (Marathi)
-* ``bn`` (Bengali)
-* ``te`` (Telugu)
-* ``ta`` (Tamil)
-* ``kn`` (Kannada)
-* ``or`` (Oriya)
-* ``pa`` (Punjabi)
-
-Usage
------
-
 In code there's only one function to use
 
 .. code:: python
@@ -54,6 +38,21 @@ In code there's only one function to use
     ಏಳುನೂರ-ತೊಂಬತ್ತೈದು
     >>> num_to_word(545589, lang='en', separator=', ', combiner='-')
     five-lakh, forty-five-thousand, five-hundred, eighty-nine
+
+
+
+The module currently supports the following languages:
+
+* ``en`` (English-India)
+* ``hi`` (Hindi)
+* ``gu`` (Gujarati)
+* ``mr`` (Marathi)
+* ``bn`` (Bengali)
+* ``te`` (Telugu)
+* ``ta`` (Tamil)
+* ``kn`` (Kannada)
+* ``or`` (Oriya)
+* ``pa`` (Punjabi)
 
 
 
