@@ -10,7 +10,9 @@ def language_specific_exception(words, lang, combiner):
         return words[-len(piece):] == piece
 
     if lang == "mr":
-        words = words.replace("एक" + combiner + "शे", "शंभर")
+        # only for number : 100
+        if words == ("एक" + combiner + "शे"):
+            return "शंभर"
     elif lang == "gu":
         words = words.replace("બે" + combiner + "સો", "બસ્સો")
     elif lang == "te":
