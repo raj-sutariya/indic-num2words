@@ -6,13 +6,13 @@ The code has been converted into PyPI module for the easy installation and updat
 ``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
 
 Use Cases:-
-------------
+------------------------------------
 1. Speech recognition pre-processing
 2. Language modeling data pre-processing
 
 
 Installation :-
-------------
+------------------------------------
 To install latest PyPI stable release
 
 .. code::
@@ -21,7 +21,7 @@ To install latest PyPI stable release
 
 
 Usage :-
-------------
+------------------------------------
 
 In code there's only one function to use
 
@@ -65,6 +65,6 @@ Add Support for following Languages
 * Urdu
 * Assamese
 
-check utils/constants.py to add support for any indian languages.
+check utils/constants.py to add support for any indian languages., it's pretty easy.
 
 ``Shout out if you want to help :)``
