@@ -1,3 +1,5 @@
+
+
 indic-num2words - Convert numbers to words for indian languages
 ===============================================================
 
@@ -5,39 +7,39 @@ The code has been converted into PyPI module for the easy installation and updat
 
 ``indic-num2words`` moduls converts numbers like ``36`` to words like ``छत्तीस``.
 
-Use Cases:-
+Use Cases
 ------------------------------------
 1. Speech recognition pre-processing
 2. Language modeling data pre-processing
 
 
-Installation :-
+Installation
 ------------------------------------
 To install latest PyPI stable release
 
-.. code::
+```
+pip install indic-num2words
+```
 
-    pip install indic-num2words
 
-
-Usage :-
+Usage
 ------------------------------------
 
 In code there's only one function to use
 
-.. code:: python
-
-    >>> from num_to_words import num_to_word
-    >>> num_to_word(36, lang='hi')
-    छत्तीस
-    >>> num_to_word('४५', lang='hi')
-    पैंतालीस
-    >>> num_to_word("35,43,57,730", lang='hi')
-    पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
-    >>> num_to_word(795, lang='kn', separator='-')
-    ಏಳುನೂರ-ತೊಂಬತ್ತೈದು
-    >>> num_to_word(545589, lang='en', separator=', ', combiner='-')
-    five-lakh, forty-five-thousand, five-hundred, eighty-nine
+```python
+>>> from num_to_words import num_to_word
+>>> num_to_word(36, lang='hi')
+छत्तीस
+>>> num_to_word('४५', lang='hi')
+पैंतालीस
+>>> num_to_word("35,43,57,730", lang='hi')
+पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
+>>> num_to_word(795, lang='kn', separator='-')
+ಏಳುನೂರ-ತೊಂಬತ್ತೈದು
+>>> num_to_word(545589, lang='en', separator=', ', combiner='-')
+five-lakh, forty-five-thousand, five-hundred, eighty-nine
+```
 
 
 
