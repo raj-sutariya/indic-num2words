@@ -17,7 +17,7 @@ with open(PACKAGE_DIR / "version.py", encoding="utf-8") as version_file:
     exec(code_obj, __version__)
     version = __version__["__version__"]
 
-with open("README.rst", "r", encoding="utf8") as readme_file:
+with open("README.md", "r", encoding="utf8") as readme_file:
     long_description = readme_file.read()
 
 setup(
