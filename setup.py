@@ -28,7 +28,7 @@ setup(
     author_email="sutariyaraj77725@gmail.com",
     description="Package to convert numbers to words with support of multiple indian languages.",
     long_description=long_description,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     url="https://github.com/sutariyaraj/indic-num2words/",
     packages=find_packages(),
     zip_safe=False,
