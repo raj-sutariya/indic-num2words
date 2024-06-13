@@ -13,6 +13,8 @@ def num_to_word(num, lang, separator=", ", combiner=" "):
     """
     lang = lang.lower()
     num = str(num)
+    if not num:
+        return ''
 
     # Load dictionary according to language code
     assert lang in SUPPORTED_LANGUAGES, "Language not supported"
@@ -29,9 +31,9 @@ def num_to_word(num, lang, separator=", ", combiner=" "):
     for language in SUPPORTED_LANGUAGES:
         for num_index in range(10):
             num = num.replace(DIGITS_LANG_MAPPING[language][num_index], DIGITS_LANG_MAPPING["en"][num_index])
+        if language == 'ta':
+            num = num.replace(DIGITS_LANG_MAPPING['ta'][10], "10")
 
-    # Assert that input contains only integer number
-    assert num, "Input string is empty"
     for digit in num:
         assert digit in DIGITS_LANG_MAPPING["en"], "Input string contains invalid characters, give proper input"
 
