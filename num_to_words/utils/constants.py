@@ -1,4 +1,4 @@
-SUPPORTED_LANGUAGES = {"en", "hi", "gu", "mr", "bn", "te", "ta", "kn", "or", "pa"}
+SUPPORTED_LANGUAGES = {"en", "hi", "gu", "mr", "bn", "te", "ta", "kn", "or", "pa", "ml"}
 
 DIGITS_LANG_MAPPING = {
   "en": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
