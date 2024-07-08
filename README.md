@@ -46,6 +46,7 @@ The module currently supports conversion to the following languages:
 - `kn` (Kannada)
 - `or` (Oriya)
 - `pa` (Punjabi)
+- `ml` (Malayalam)
 
 ## Use Cases
 
@@ -56,7 +57,6 @@ The module currently supports conversion to the following languages:
 
 We are planning to add support for the following languages:
 
-- Malayalam
 - Urdu
 - Assamese
 
