@@ -31,8 +31,6 @@ def num_to_word(num, lang, separator=", ", combiner=" "):
     for language in SUPPORTED_LANGUAGES:
         for num_index in range(10):
             num = num.replace(DIGITS_LANG_MAPPING[language][num_index], DIGITS_LANG_MAPPING["en"][num_index])
-        if language == 'ta':
-            num = num.replace(DIGITS_LANG_MAPPING['ta'][10], "10")
     num = language_specific_exception(num, lang, combiner)
     for digit in num:
         assert digit in DIGITS_LANG_MAPPING["en"], "Input string contains invalid characters, give proper input"
