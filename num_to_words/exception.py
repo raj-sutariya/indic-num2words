@@ -1,4 +1,4 @@
-from .utils import NUM_DICT
+from .utils import NUM_DICT, DIGITS_LANG_MAPPING
 
 
 def language_specific_exception(words, lang, combiner):
@@ -59,4 +59,6 @@ def language_specific_exception(words, lang, combiner):
         for expt in exception_dict:
             if occurs_at_end(expt):
                 words = words.replace(expt, exception_dict[expt])
+    elif lang == "ta":
+        words = words.replace(DIGITS_LANG_MAPPING['ta'][10], "10")
     return words
