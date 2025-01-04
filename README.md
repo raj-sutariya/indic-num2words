@@ -22,6 +22,7 @@ print(num_to_word(36, lang='hi'))  # Output: छत्तीस
 print(num_to_word('४५', lang='hi'))  # Output: पैंतालीस
 print(num_to_word("35,43,57,730", lang='hi'))  # Output: पैंतीसकरोड़ तैंतालीसलाख सत्तावनहज़ार सातसौ तीस
 print(num_to_word(795, lang='kn', separator='-'))  # Output: ಏಳುನೂರ-ತೊಂಬತ್ತೈದು
+print(num_to_word(445951, lang='ne')) # Output: चार लाख, पैंतालीस हजार, नौ सय, एकाउन्न
 print(num_to_word(545589, lang='en', separator=', ', combiner='-'))  # Output: five-lakh, forty-five-thousand, five-hundred, eighty-nine
 ```
 
@@ -38,6 +39,7 @@ The module currently supports conversion to the following languages:
 
 - `en` (English-India)
 - `hi` (Hindi)
+- `ne` (Nepali)
 - `gu` (Gujarati)
 - `mr` (Marathi)
 - `bn` (Bengali)
